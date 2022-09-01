@@ -27,15 +27,16 @@ async function startPictureInPicture(){
 function exitPicture (){
     document.exitPictureInPicture();
     button.innerText = 'Select Media';
+    button.disabled = false;
 }
-button.addEventListener('click', async () => {
-    if(button.innerText === 'Select Media'){
-        selectMediaStream();
-    }else {
-        startPictureInPicture();
-    }
-})
 
+    button.addEventListener('click', async () => {
+        if(button.innerText === 'Select Media'){
+            selectMediaStream();
+        }else {
+            startPictureInPicture();
+        }
+    })
 videoElement.addEventListener('leavepictureinpicture', () => {
     console.log('close')
     mediaStream.getVideoTracks()[0].removeEventListener('ended', exitPicture());
